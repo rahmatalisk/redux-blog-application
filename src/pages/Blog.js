@@ -8,7 +8,7 @@ import { fetchBlog } from "../features/blog/BlogSlice";
 
 const Blog = () => {
   const dispatch = useDispatch();
-  const { blog } = useSelector((state) => state.blog);
+  const { blog,isLoading,isError,error } = useSelector((state) => state.blog);
   const { tags, id } = blog;
   const { blogId } = useParams();
   useEffect(() => {
@@ -18,7 +18,7 @@ const Blog = () => {
     <>
       <GoToHome />
       <section className="post-page-container">
-        <BlogDetail blog={blog} />
+        <BlogDetail blog={blog} isError={isError} error={error} isLoading={isLoading}/>
         <RelatedBlog tags={tags} id={id} />
       </section>
     </>
